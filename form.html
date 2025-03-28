@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h2>Formulário de Contato</h2>
+        <form action="#">
+            <div>
+                <label for="nome">*Nome</label>
+                <input id="nome" type="text" required placeholder="Digíte seu nome" name="nome">
+            </div>
+            <div>
+                <label for="email">*Email</label>
+                <input id="email" type="email" name="email" required> <!--required deixa o item obrigatorio de preencher-->
+            </div>
+            <div>
+                <label for="fone">*Telefone</label>
+                <input type="tel" id="fone" name="fone">            
+            </div>
+            <div>
+                <label for="setor">Setor</label>
+                <select name="setor" id="setor">
+                    <option value="1">Vendas</option>
+                    <option value="2">Administrativo</option>
+                    <option value="3">Financeiro</option>
+                </select>
+            </div>
+            <div>
+                <label for="text">Mensagem</label>
+                <textarea name="text" id="text"></textarea>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Comunicação Urgente</legend>
+                    <label>
+                        <input type="radio" name="comunicacao">Sim
+                    </label>
+                    <label>
+                        <input type="radio" name="comunicacao">Não
+                    </label>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Obtive Conhecimento no projeto</legend>
+                    <label>
+                        <input type="checkbox" name="objetivo[]" value="1">Buscador
+                    </label>
+                    <label>
+                        <input type="checkbox" name="objetivo[]" value="2">Publicidade em Video
+                    </label>
+                    <label>
+                        <input type="checkbox" name="objetivo[]" value="3">Amigos
+                    </label>
+                    <label>
+                        <input type="checkbox" name="objetivo[]" value="4">Email
+                    </label>
+                    <label>
+                        <input type="checkbox" name="objetivo[]" value="5">Outros
+                    </label>
+                </fieldset>
+            </div>
+            <div>
+                <input type="reset" value="limpar">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
