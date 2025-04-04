@@ -1,0 +1,22 @@
+/*===================================================
+     GERAL
+=====================================================
+*/
+body {
+    /* background: red;  */
+    color: #21243D;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+a {
+    color: #21243D;
+    text-decoration: none;
+}
+/* ==================================================
+     ESPECIFICO
+   ==================================================
+*/
+
+header ul li {
+    text-align: center;
+    padding: 10px 0 10px 0;      /* superior, direita, inferior, esquerda */
+}
