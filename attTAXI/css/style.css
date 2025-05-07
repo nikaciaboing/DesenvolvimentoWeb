@@ -29,6 +29,55 @@ header {
     padding: 2vw 8vw 2vw 8vw;
 }
 
+section.banner {
+    background: url(../src/images/iPhone-13-Pro-Front.png) no-repeat right, linear-gradient(rgba(225, 244, 255,0.5),rgba(225, 244, 255, 0.5)), url(../src/images/background-footer.png);
+    padding: 10vw 8vw;
+    background-size: auto 90% , auto , auto;
+}
+
+section.banner h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(37, 43, 67);
+}
+
+section.banner p.text {
+    width: 30%;
+    color: gray 
+}
+
+section.banner p{
+    margin: 40px 0;
+}
+
+section.banner p button span{
+    margin: 0 5px 0 0;
+}
+
+
+section.banner p button {
+    background: rgb(37, 43, 67);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.3rem;
+}
+
+section.ride h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(37, 43, 67);
+    text-align: center;
+    margin: 5vw 10vw 5vw 10vw;
+}
+
+section.ride p.text {
+    width: 40%;
+    color: gray;
+    text-align: center;
+}
+
 @media (min-width:1024px) {
 header nav {
     display: flex;
