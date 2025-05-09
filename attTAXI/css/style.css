@@ -69,14 +69,77 @@ section.ride h2 {
     font-weight: bold;
     color: rgb(37, 43, 67);
     text-align: center;
-    margin: 5vw 10vw 5vw 10vw;
+    margin: 7vw 0 2vw 0;
 }
 
 section.ride p.text {
-    width: 40%;
+    width: 50%;
+    margin:0 auto 0 auto ;
     color: gray;
     text-align: center;
+    
 }
+
+section.ride div {
+    display: flex; 
+    margin: 40px 40px 40px 40px;
+}
+
+section.ride div ul  {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5vw 5vw;
+}
+section.ride div ul li {
+    width: 50%;
+}
+
+section.ride img {
+    margin: 5vw 5vw;
+}
+
+section.ride div ul li h3 {
+    padding: 10px 20px;
+    font-weight: bold;
+}
+section.ride div ul li p{
+    color: gray;
+    padding: 20px 20px;
+    width: 60%;
+}
+section.ride ul li span {
+    background-color: rgba(209, 227, 245, 0.5);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 0 10px 15px;
+    color: #fbbc05;
+}
+section.download {
+    background: url(../src/images/iPhone-13-Pro-Front.png) no-repeat, url(../src/images/iPhone-13-Pro-Front.png) no-repeat, #fbbc05;
+    background-size: 25% auto, 25% auto, auto;
+    background-position: 60% 270%, 90% -270%;
+    border-radius: 27px;
+    padding: 5vw;
+    margin: 7vw 10vw 7vw 10vw;
+}
+section.download h2 {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 50px 0 30px 0;
+}
+section.download p {
+    color: white;
+    width: 40%;
+    margin: 10px 0 70px 0;
+}
+section.download button {
+    background-color: #252B42;
+    color: white;
+    border-radius: 15px;
+    padding: 15px 30px;
+    border: none;
+} 
 
 @media (min-width:1024px) {
 header nav {
