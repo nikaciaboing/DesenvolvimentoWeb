@@ -140,6 +140,41 @@ section.download button {
     padding: 15px 30px;
     border: none;
 } 
+section.services {
+    display: flex;
+    margin: 10vw 5vw 10vw 5vw;
+}
+
+section.services ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 10vw 20vw;
+}
+section.services ul li {
+    width: 46%;
+    background-color: rgb(237, 235, 235);
+    margin: 10px 2%;
+}
+section.services div h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+section.services ul li img{
+    padding: 30px 0px 0px 30px;
+}
+
+section.services ul li h2 {
+    margin: 50px 0 30px 30px;
+    color: black;
+    font-weight: bold;
+}
+section.services ul li p{
+    margin: 20px 30px 30px 30px;
+}
+section.services ul li:hover {
+    background-color: #fbbc05;
+}
+
 
 @media (min-width:1024px) {
 header nav {
