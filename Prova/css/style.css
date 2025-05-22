@@ -1,0 +1,174 @@
+html {
+    font-size: calc(15px + 0.390625vw);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+/* ==== TOPO ==== */
+header{
+    display: flex;
+    justify-content: space-between;
+    margin: 2vw 7vw 2vw 7vw;
+}
+header ul {
+    display: flex;
+}
+header nav ul li a{
+    color: #343F52;
+    font-size: 0.8rem;
+    margin: 0 0 0 20px;
+}
+header h1 {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+/* ==== BANNER ==== */
+section.banner {
+    background:  linear-gradient(#E4F1FE,#FAD8F6);
+    display: flex;
+    border-radius: 27px;
+    padding: 4vw 5vw 0 5vw;
+    margin: 2vw 7vw 10vw 7vw;
+}
+section.banner h2{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 7vw 0 2vw 0;
+}
+section.banner h2 span{
+    font-weight: bold;
+    color: #EF3F6E;
+}
+section.banner p{
+    color: #60697B;
+    line-height: 1.5rem;
+    margin: 0 0 2vw 0;
+}
+section.banner button{
+    color: white;
+    background: linear-gradient(#F857A6,#EF3F6E);
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 1rem;
+}
+section.banner img{
+    margin: 0 0 0 8vw;
+}
+/* ==== STUDIES ==== */
+section.studies {
+    text-align: center;
+}
+section.studies p span{
+    color: #EF3F6E;
+    
+}
+section.studies h2{
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: #343F52;
+    margin: 2vw 27vw 1vw 27vw;
+}
+section.studies img{
+    width: 90%;
+}
+section.studies ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 4vw 7vw 4vw 17vw;
+    text-align: left;
+}
+section.studies ul li{
+    width: 30%;
+    margin: 0 0 4vw 0;
+}
+section.studies h3{
+    color: #343F52;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 20px 0 20px 0;
+}
+section.studies p{
+    color: #AAB0BC;
+    margin: 0 0 0 10px;
+    font-size: 0.7rem;
+}
+/* ==== JOIN ==== */
+section.join {
+    background: linear-gradient(#E4F1FE,#FAD8F6);
+    padding: 5vw;
+    margin: 0 10vw 0 10vw;
+    text-align: center;
+    border-radius: 28px;
+}
+section.join p{
+    color: #EF3F6E;
+    margin: 0 0 1vw 0;
+}
+section.join h2{
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 0 15vw 2vw 15vw;
+    color: #343F52;
+}
+section.join button{
+    color: white;
+    background: linear-gradient(#F857A6,#EF3F6E);
+    padding: 20px;
+    border: none;
+    border-radius: 20px;
+}
+/* ==== FOOTER ==== */
+footer{
+    justify-content: space-between;
+    color: #747B8C;
+    padding: 10vw;
+    font-size: 0.7rem;
+    display: flex;
+}
+footer div nav{
+    margin: 0 0 7px 0;
+}
+footer div nav a{
+    color: #747B8C;
+    margin: 0 10px 0 0;
+}
+footer p{
+    margin: 0 0 7px 0;
+}
+footer div.p p{
+    color: #343F52;
+    margin: 0 0 1.5vw 0;
+    font-size: 0.8rem;
+    
+}
+footer div ul li{
+    margin: 0 0 1vw 0;
+    text-align: left;
+}
+
+@media (min-width:1024px) {
+    header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    header nav > ul {
+        display: flex;
+        align-items: center;
+    }
+    header nav ul li {
+        margin: 0px 10px 0px 10px;
+    }
+    header nav ul ul {
+        display: none;
+    }
+    header nav ul li:hover ul {
+        display: block;
+        position: absolute;
+    }
+    header nav ul ul li {
+        margin: 5px 0 5px 0px;
+    }
+    }
