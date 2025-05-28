@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <h1>calcularDiarias</h1>
     <section>
         <h3><span id="preco_diaria">R$620</span>noite</h3>
         <form action="#">
@@ -25,7 +26,7 @@
             </div>
             <p>
                 <label for="hospedes">HÓSPEDES</label>
-                <select>
+                <select id="hospedes">
                     <option value="1">1 hóspede</option>
                     <option value="2">2 hóspedes</option>
                     <option value="3">3 hóspedes</option>
@@ -44,39 +45,51 @@
             </ul>
         </div>
     </section>
-    <script>
-        let checkout = document.getElementById("checkout");
-        console.log(checkout);
+<script>
+    /* Buscando o elemento checkout pelo ID */
+    let checkout = document.getElementById("checkout");
+    console.log(checkout);
 
-        checkout.addEventListener("change", function () {
-            let data_saida = new Date(this.value);
-            let data_entrada = new Date(document.getElementById("checkin").value);
-            console.log(data_saida, data_entrada);
-            let qtd_diarias = (data_saida - data_entrada) / 86400000;
-            console.log(qtd_diarias);
+    // Calculando as diárias
+    function calcularDiarias() {
+    let data_saida = new Date(document.getElementById("checkout").value);
+    let data_entrada = new Date(document.getElementById("checkin").value);
+    let qtd_diarias = (data_saida - data_entrada) / 86400000;
 
-            let preco_diaria = parseFloat(document.getElementById("preco_diaria").innerText.substring(2));
-            console.log (preco_diaria);
+    let preco_diaria_base = parseFloat(document.getElementById("preco_diaria").innerText.substring(2));
 
-            let subtotal = document.getElementById("subtotal");
-            subtotal.innerText = "R$" + preco_diaria + "x" + qtd_diarias + " noites";
-            let valor_sub = document.getElementById("valor_sub")
-            let valor_diarias = preco_diaria * qtd_diarias;
-            valor_sub.innerText = "R$" + valor_diarias;
+    let hospedes = parseInt(document.getElementById("hospedes").value);
 
-            let taxa_servico = document.getElementById("taxa_servico");
-            let valor_taxa_servico = 0.15 * valor_diarias;
-            taxa_servico.innerText = "R$" + valor_taxa_servico;
+    // Aplicando o incremento de 20% por hóspede adicional até o limite de 4 hóspedes
+    let preco_diaria = preco_diaria_base;
+    if (hospedes > 1 && hospedes <= 4) {
+        preco_diaria += (preco_diaria_base * 0.2 * (hospedes - 1));
+    }
 
-            let taxa_limpeza = document.getElementById ("taxa_limpeza");
-            let valor_taxa_limpeza = parseFloat( taxa_limpeza.innerText.substring(2));
-            console.log(valor_taxa_limpeza);
+    /* Total */
+    let subtotal = document.getElementById("subtotal");
+    subtotal.innerText = "R$" + preco_diaria + " x " + qtd_diarias + " noites";
 
-            let total = document.getElementById("total");
-            total.innerText = "R$" + (valor_diarias + valor_taxa_limpeza + valor_taxa_servico)
+    let valor_sub = document.getElementById("valor_sub");
+    let valor_diarias = preco_diaria * qtd_diarias;
+    valor_sub.innerText = "R$" + valor_diarias;
 
-        });
-    </script>
+    let taxa_servico = document.getElementById("taxa_servico");
+    let valor_taxa_servico = (valor_diarias * 0.15).toFixed(2); 
+    taxa_servico.innerText = "R$" + valor_taxa_servico;
+
+    let taxa_limpeza = document.getElementById("taxa_limpeza");
+    let valor_taxa_limpeza = parseFloat(taxa_limpeza.innerText.substring(2));
+
+    let total = document.getElementById("total");
+    let valor_total = parseFloat(valor_diarias) + parseFloat(valor_taxa_limpeza) + parseFloat(valor_taxa_servico);
+    total.innerText = "R$" + valor_total.toFixed(2);
+}
+
+    checkout.addEventListener("change", calcularDiarias);
+    let hospedes = document.getElementById("hospedes");
+    hospedes.addEventListener("change", calcularDiarias);
+</script>
 </body>
 
 </html>
