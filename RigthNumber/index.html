@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo de Adivinhação</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+  </style>
+</head>
+
+<body>
+
+  <div class="banner">
+    <span class="timer">00:30</span>
+    <h2>ESCOLHA UM NÚMERO<br>ENTRE 0 E 9</h2>
+    <div class="circulo">?</div>
+    <p class="hint">Prepare-se!</p>
+
+    <div class="numbers">
+    </div>
+  </div>
+  <audio id="acerto-sound" src="https://freesound.org/data/previews/320/320655_5260877-lq.mp3"></audio>
+  <audio id="erro-sound" src="https://freesound.org/data/previews/320/320656_5260877-lq.mp3"></audio>
+
+  <script>
+    const timerEl = document.querySelector('.timer');
+    const hintEl = document.querySelector('.hint');
+    const circuloEl = document.querySelector('.circulo');
+    const numbersDiv = document.querySelector('.numbers');
+
+    const acertoSound = document.getElementById('acerto-sound');
+    const erroSound = document.getElementById('erro-sound');
+
+    let timeLeft = 30;
+    let acertos = 0;
+    let velocidade = 1000;
+    let interval;
+    let secret;
+
+    function gerarNumeroSecreto() {
+      return Math.floor(Math.random() * 10);
+    }
+
+    function gerarBotoes() {
+      numbersDiv.innerHTML = '';
+      for (let num = 0; num <= 9; num++) {
+        const btn = document.createElement('button');
+        btn.textContent = num;
+        btn.addEventListener('click', () => verificar(num));
+        numbersDiv.appendChild(btn);
+      }
+    }
+
+    function atualizarTimer() {
+      timerEl.textContent = '00:' + (timeLeft < 10 ? '0' : '') + timeLeft;
+    }
+
+    function iniciarTimer() {
+      interval = setInterval(() => {
+        timeLeft--;
+        atualizarTimer();
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          hintEl.textContent = "Tempo esgotado!";
+          desabilitarBotoes();
+        }
+      }, velocidade);
+    }
+
+    function desabilitarBotoes() {
+      document.querySelectorAll('.numbers button').forEach(btn => btn.disabled = true);
+    }
+
+    function verificar(guess) {
+      circuloEl.textContent = guess;
+      if (guess === secret) {
+        acertoSound.play();
+        acertos++;
+        hintEl.textContent = `Acertou! (${acertos}/3)`;
+        if (acertos >= 3) {
+          clearInterval(interval);
+          hintEl.textContent = "Parabéns, você venceu!";
+          desabilitarBotoes();
+          return;
+        }
+        secret = gerarNumeroSecreto();
+      } else {
+        erroSound.play();
+        if (guess > secret) {
+          hintEl.textContent = "O NÚMERO É MENOR";
+        } else {
+          hintEl.textContent = "O NÚMERO É MAIOR";
+        }
+        acelerarTempo();
+      }
+    }
+
+    function acelerarTempo() {
+      clearInterval(interval);
+      velocidade = Math.max(200, velocidade - 200);
+      iniciarTimer();
+    }
+    secret = gerarNumeroSecreto();
+    gerarBotoes();
+    atualizarTimer();
+    iniciarTimer();
+  </script>
+</body>
+</html>
