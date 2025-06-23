@@ -1,0 +1,133 @@
+/* === ESTILO EXPLORADOR GLOBAL === */
+body {
+  font-family: "Georgia", serif;
+  background: url('../src/images/mapa-antigo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #2c1b13;
+  margin: 0;
+  padding: 30px;
+  text-align: center;
+}
+
+h2, h3 {
+  font-family: "Garamond", serif;
+  font-weight: bold;
+  color: #4d2e1c;
+  text-shadow: 1px 1px 0 #f7efe1;
+}
+
+/* Botões */
+.btn {
+  background-color: #8b5e3c;
+  color: #fff8ec;
+  border: 2px solid #5b3e2a;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+  background-color: #a47250;
+}
+
+/* Seções do quiz */
+section {
+  display: none;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: rgba(255, 248, 231, 0.9);
+  border-radius: 10px;
+  border: 1px solid #d7c1a1;
+}
+
+section.active {
+  display: block;
+}
+
+/* Placar */
+.placar {
+  font-weight: bold;
+  margin: 12px 0;
+  color: #5b3e2a;
+}
+
+/* Opções com imagem */
+.opcoes-img {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  justify-items: center;
+  margin: 20px auto;
+}
+
+.opcoes-img label {
+  display: inline-block;
+  margin: 10px;
+  padding: 5px;
+  border: 3px dashed transparent;
+  border-radius: 8px;
+  background-color: rgba(255, 248, 231, 0.7);
+  cursor: pointer;
+  transition: border 0.3s ease, transform 0.2s ease;
+}
+
+.opcoes-img img {
+  width: 100px;
+  height: auto;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.opcoes-img input[type="checkbox"] {
+  display: none;
+}
+
+.opcoes-img input[type="checkbox"]:checked + img,
+.opcoes-img input[type="checkbox"]:checked ~ img {
+  border: 3px solid #8b5e3c;
+  transform: scale(1.05);
+}
+
+.opcoes-img label.correto {
+  border-color: #2e7d32 !important;
+  background-color: rgba(219, 242, 204, 0.9);
+}
+
+.opcoes-img label.errado {
+  border-color: #c62828 !important;
+  background-color: rgba(252, 220, 220, 0.85);
+}
+
+/* Temporizador */
+#timer {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  background: #fef6e3;
+  padding: 6px 12px;
+  border: 2px solid #8b5e3c;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 1.1rem;
+  z-index: 999;
+}
+
+/* Botão de som */
+#sound-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: #e6d2b5;
+  border: 1px solid #8b5e3c;
+  color: #4d2e1c;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 999;
+}

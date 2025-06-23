@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz dos Países</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <button id="sound-btn">🔊</button>
+
+  <!-- Tela 1 – Boas-vindas -->
+  <section id="tela1" class="active">
+    <h2>Bem-vindo ao Jogo!</h2>
+    <p>Teste seus conhecimentos sobre idiomas, moedas e localização dos países.</p>
+    <button class="btn" onclick="proximaTela()">Começar</button>
+  </section>
+
+  <!-- Tela 2 – Idioma -->
+  <section id="tela2">
+    <h3>Quais destes países falam espanhol?</h3>
+    <div class="opcoes-img">
+      <label><input type="checkbox" data-correto="true"><img src="src/images/025-argentina.png" alt="Argentina"></label>
+      <label><input type="checkbox"><img src="src/images/036-france.png" alt="França"></label>
+      <label><input type="checkbox" data-correto="true"><img src="src/images/030-mexico.png" alt="México"></label>
+      <label><input type="checkbox"><img src="src/images/033-china.png" alt="China"></label>
+      <label><input type="checkbox" data-correto="true"><img src="src/images/032-spain.png" alt="Espanha"></label>
+      <label><input type="checkbox"><img src="src/images/037-japan.png" alt="Japão"></label>
+    </div>
+    <div class="placar">Acertos: <span id="acertos1">0</span></div>
+    <button class="btn" onclick="avaliar(1)">Próxima</button>
+  </section>
+
+  <!-- Tela 3 – Moeda -->
+  <section id="tela3">
+    <h3>Quais destes países usam o euro?</h3>
+    <div class="opcoes-img">
+      <label><input type="checkbox"><img src="src/images/018-philippines.png" alt="Filipinas"></label>
+      <label><input type="checkbox"><img src="src/images/029-canada.png" alt="Canadá"></label>
+      <label><input type="checkbox" data-correto="true"><img src="src/images/022-portugal.png" alt="Portugal"></label>
+      <label><input type="checkbox" data-correto="true"><img src="src/images/036-france.png" alt="França"></label>
+      <label><input type="checkbox"><img src="src/images/025-argentina.png" alt="Argentina"></label>
+      <label><input type="checkbox"><img src="src/images/012-egypt.png" alt="Egito"></label>
+    </div>
+    <div class="placar">Acertos: <span id="acertos2">0</span></div>
+    <button class="btn" onclick="avaliar(2)">Próxima</button>
+  </section>
+
+  <!-- Tela 4 – Continente -->
+  <section id="tela4">
+    <h3>Quais países estão localizados na Ásia?</h3>
+    <div class="opcoes-img">
+      <label><input type="checkbox" data-correto="true"><img src="src/images/037-japan.png" alt="Japão"></label>
+      <label><input type="checkbox" data-correto="true"><img src="src/images/033-china.png" alt="China"></label>
+      <label><input type="checkbox"><img src="src/images/036-france.png" alt="França"></label>
+      <label><input type="checkbox"><img src="src/images/029-canada.png" alt="Canadá"></label>
+      <label><input type="checkbox" data-correto="true"><img src="src/images/005-israel.png" alt="Israel"></label>
+      <label><input type="checkbox"><img src="src/images/019-england.png" alt="Inglaterra"></label>
+    </div>
+    <div class="placar">Acertos: <span id="acertos3">0</span></div>
+    <button class="btn" onclick="avaliar(3)">Ver Resultado</button>
+  </section>
+
+  <!-- Tela 5 – Resultado -->
+  <section id="tela5">
+    <h2>Resultado Final</h2>
+    <p id="resultadoFinal"></p>
+    <button class="btn" onclick="reiniciar()">Jogar Novamente</button>
+  </section>
+
+  <!-- Timer -->
+  <div id="timer">00:15</div>
+
+  <!-- Música de fundo -->
+  <audio id="somFundo" autoplay loop>
+    <source src="src/som/somJogo.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    let telaAtual = 1;
+    let acertosTotais = 0;
+    let timer;
+    let tempo = 15;
+
+    function proximaTela() {
+      const telaAnterior = document.getElementById(`tela${telaAtual}`);
+      if (telaAnterior) telaAnterior.classList.remove("active");
+      telaAtual++;
+      const novaTela = document.getElementById(`tela${telaAtual}`);
+      if (novaTela) novaTela.classList.add("active");
+      if (telaAtual >= 2 && telaAtual <= 4) reiniciarTimer();
+      audio.play();
+    }
+
+    function avaliar(fase) {
+      const inputs = document.querySelectorAll(`#tela${fase} input[type="checkbox"]`);
+      let pontos = 0;
+
+      inputs.forEach(input => {
+        const correto = input.dataset.correto !== undefined;
+        const parent = input.parentElement;
+
+        if (correto) {
+          parent.classList.add("correto");
+        } else if (input.checked) {
+          parent.classList.add("errado");
+        }
+
+        if (input.checked && correto) pontos++;
+        input.disabled = true;
+      });
+
+      document.getElementById(`acertos${fase}`).innerText = pontos;
+      acertosTotais += pontos;
+
+      clearInterval(timer);
+      setTimeout(() => {
+        if (telaAtual === 4) {
+          proximaTela();
+          document.getElementById("resultadoFinal").innerText = `Você acertou ${acertosTotais} perguntas!`;
+        } else {
+          proximaTela();
+        }
+      }, 1500);
+    }
+
+    function reiniciar() {
+      location.reload();
+    }
+
+    const audio = document.getElementById("somFundo");
+    const soundBtn = document.getElementById("sound-btn");
+    soundBtn.onclick = () => {
+      audio.muted = !audio.muted;
+      soundBtn.textContent = audio.muted ? '🔇' : '🔊';
+    };
+
+    function iniciarTimer() {
+      tempo = 15;
+      document.getElementById("timer").textContent = "00:15";
+      timer = setInterval(() => {
+        tempo--;
+        document.getElementById("timer").textContent = `00:${tempo.toString().padStart(2, '0')}`;
+        if (tempo === 0) {
+          clearInterval(timer);
+          avaliar(telaAtual - 1);
+        }
+      }, 1000);
+    }
+
+    function reiniciarTimer() {
+      clearInterval(timer);
+      iniciarTimer();
+    }
+  </script>
+</body>
+</html>
